@@ -13,6 +13,7 @@ canary插件的使用范围支持global、service、route
 
 ## 3. 安装说明
 参考官网：https://docs.konghq.com/1.2.x/plugin-development/distribution/(Manually方式）
+
 启用canary,在/etc/kong/kong.conf增加如下配置：
 ```lua
 plugins = bundled,canary
