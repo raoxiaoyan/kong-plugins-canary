@@ -1,23 +1,33 @@
 
-## canary金丝雀插件使用说明
-基于kong[基于1.2.1版本]网关的灰度插件
+# Canary金丝雀插件[基于kong]
+## 0. 概述
+基于kong[基于1.2.1版本]网关灰度插件
 
-canary的使用范围支持global、service、route
+canary插件的使用范围支持global、service、route
+## 1.应用场景
+– 灰度上线、版本迭代（灰度的量灵活切换）
 
-## canary插件原理
+– 特殊用户、特别版本（灰度的方式多样化）
+## 2. canary插件设计原理
 ![avatar](docs/canary_design.png)
 
-## canary配置界面
-
+## 3. 安装说明
+参考官网：https://docs.konghq.com/1.2.x/plugin-development/distribution/(Manually方式）
+启用canary,在/etc/kong/kong.conf增加如下配置：
+```lua
+plugins = bundled,canary
+```
+kong restart 重启即可
+## 4. canary配置界面
 ![avatar](docs/canary_plugin.png)
 
-以下对配置参数进行详细说明
-## canary_upstream
+## 5. 配置参数说明
+### 5.1 canary_upstream
 canary_upstream为必填项，设置默认转发的上游代理名称，如下所示：
 ```text
 msgbox.upstream
 ```
-## 灰度规则1：ip
+### 灰度规则1：ip
 ### range
 设置ip支持单个，多个，范围分段IP（满足CIDR notation规则），以下值都为合法
 ```text
