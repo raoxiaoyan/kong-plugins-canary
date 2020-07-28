@@ -5,7 +5,11 @@
 canary的使用范围支持global、service、route
 
 ## canary插件原理
-![avatar](./docs/canary.png)
+![avatar](docs/canary_design.png)
+
+## canary配置界面
+
+![avatar](docs/canary_plugin.png)
 
 以下对配置参数进行详细说明
 ## canary_upstream
