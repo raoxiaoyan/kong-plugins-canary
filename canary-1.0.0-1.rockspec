@@ -1,5 +1,5 @@
 package = "canary"
-version = "1.0.0-1"
+version = "dev-1"
 source = {
    url = "git+https://gitee.com/raoxy/canary.git"
 }
@@ -8,11 +8,8 @@ description = {
 canary插件的使用范围支持global、service、route
 ## 1.应用场景
 – 灰度上线、版本迭代（灰度的量灵活切换）]],
-   homepage = "https://gitee.com/raoxy/canary.git",
-   license = "MIT"
-}
-dependencies = {
-    "lua-resty-iputils == 0.3.0"
+   homepage = "*** please enter a project homepage ***",
+   license = "*** please specify a license ***"
 }
 build = {
    type = "builtin",
