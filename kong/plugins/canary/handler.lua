@@ -9,7 +9,7 @@ local cjson = require "cjson"
 local CanaryHandler = {}
 
 CanaryHandler.PRORITY = 899
-CanaryHandler.VERSION = "0.0.1"
+CanaryHandler.VERSION = "1.0.2"
 
 local function fallback()
   kong.log.notice('fallback');
