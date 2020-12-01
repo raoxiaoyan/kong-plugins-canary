@@ -3,7 +3,33 @@
 --- Created by Administrator.
 --- DateTime: 2020/2/21 10:18
 ---
-local typedefs = require "kong.db.schema.typedefs"
+local iputils = require "resty.iputils"
+local protocols_with_subsystem = {
+    http = "http",
+    https = "http",
+    tcp = "stream",
+    tls = "stream"
+}
+
+local http_protocols = {}
+for p, s in pairs(protocols_with_subsystem) do
+    if s == "http" then
+        http_protocols[#http_protocols + 1] = p
+    end
+end
+table.sort(http_protocols)
+
+local function validate_cidr_v4(ip)
+    local _, err = iputils.parse_cidr(ip)
+
+    -- It's an error only if the second variable is a string
+    if type(err) == "string" then
+        return nil, "invalid cidr range: " .. err
+    end
+
+    return true
+end
+
 local string_array = {
     type = "array",
     default = {},
@@ -14,7 +40,10 @@ local colon_string_array = {
     type = "array",
     default = {},
     --elements = { type = "string", },
-    elements = typedefs.cidr_v4,
+    elements = {
+        type = "string",
+        custom_validator = validate_cidr_v4,
+    },
 }
 
 local one_of = {
@@ -55,7 +84,12 @@ return {
     name = "canary",
     fields = {
         --{ run_on = typedefs.run_on_first },
-        { protocols = typedefs.protocols_http },
+        { protocols = {
+            type = "set",
+            required = true,
+            default = http_protocols,
+            elements = { type = "string", one_of = http_protocols },
+        } },
         { config = {
             type = "record",
             fields = {
