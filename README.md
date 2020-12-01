@@ -23,6 +23,7 @@ plugins = bundled,canary
 ```
 kong restart 重启即可
 ## 4. canary配置界面
+推荐使用[kongx](https://gitee.com/raoxy/kongx)进行管理
 ![avatar](docs/canary_plugin.png)
 
 ## 5. 配置参数说明
